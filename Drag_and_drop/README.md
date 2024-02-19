@@ -36,7 +36,7 @@ Fes que per a cada un d’aquests esdeveniments executats al div dropArea se li 
     Utilitza un forEach per a fer-ho.
     ```
     dropArea.addEventListener(evt, prevDefault);
-        function prevDefault (e) {
+    function prevDefault (e) {
         e.preventDefault();
     }
     ```
@@ -44,7 +44,7 @@ Fes que per a cada un d’aquests esdeveniments executats al div dropArea se li 
 Volem que en el moment d’arrossegar un fitxer al div aquest es modifiqui de la següent manera
     ```
     dropArea.addEventListener("dragover", function(){
-    //CODE
+        //CODE
     });
     ```
     - El div ha de tenir la classe active
@@ -117,9 +117,7 @@ extensions permeses
     let prev = `<div class="previewImage">
                 <img src="${fileurL}"/>
                 <span>${file.name}</span>
-                <span onclick="remove(${index})" class="material-symbols-outlined
-
-                removeBtn">c</span>
+                <span onclick="remove(${index})" class="material-symbols-outlined removeBtn">c</span>
                 </div>`;
     ```
 
@@ -155,26 +153,30 @@ funció que detecti aquest moment per mostrar els nous fitxers
     resultats i cridar a la funció showFiles()
     !!!Ves amb compte amb el div preview
 
-    **PASSAR AQUESTES DADES AL PHP**
-    ```
-    form.addEventListener("submit", function(e){
-        e.preventDefault();
-        const dataTransfer = new DataTransfer();
-        files.forEach(file=>{
+**PASSAR AQUESTES DADES AL PHP** (opcional)
+```
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const dataTransfer = new DataTransfer();
+    files.forEach(file=>{
         dataTransfer.items.add(file);
-        })
-        input.files = dataTransfer.files;
-        form.submit();
-    });
-    ```
+    })
+    input.files = dataTransfer.files;
+    form.submit();
+});
+```
 
-    **REBEM LES DADES AL PHP**
+**REBEM LES DADES AL PHP** (opcional)
 
-    *Fixeu-vos en l’estructura de l’Array que ens retorna $_FILES
-    ```
-    print_r($_FILES["inputFiles"]);
-    for ($i=0; $i<count($_FILES["inputFiles"]["name"]); $i++) {
-        echo $_FILES["inputFiles"]["tmp_name"][$i] .'<br>';
-        echo $_FILES["inputFiles"]["name"][$i] .'<br>';
-    }
-    ```
+*Fixeu-vos en l’estructura de l’Array que ens retorna $_FILES
+```
+print_r($_FILES["inputFiles"]);
+for ($i=0; $i<count($_FILES["inputFiles"]["name"]); $i++) {
+    echo $_FILES["inputFiles"]["tmp_name"][$i] .'<br>';
+    echo $_FILES["inputFiles"]["name"][$i] .'<br>';
+}
+```
+
+# Previsualització
+Imatge de com es veuria l'activitat:
+![Excecici joana](img/Captura_pantalla_dragAndDrop.png)
