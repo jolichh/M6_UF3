@@ -98,3 +98,14 @@ input.addEventListener("change", function(){
     array_fitxers = array_fitxers.concat(Array.from(input.files));
     showFiles();
 });
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const dataTransfer = new DataTransfer();
+    array_fitxers.forEach(file=>{
+        dataTransfer.items.add(file);
+    })
+    input.files = dataTransfer.files;
+    form.submit();
+    console.log("Submitted form");
+});
