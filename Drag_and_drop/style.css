@@ -1,3 +1,8 @@
+#container {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
 .drop-area{
     border: 2px dashed #ddd;
     height: 300px;
