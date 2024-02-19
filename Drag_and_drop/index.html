@@ -8,14 +8,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
-    <div id="container">
-        <div class="drop-area" draggable="true">
-            <h2>Drag & Drop files</h2>
-            <button>Upload files</button>
-            <input type="file" name="inputFiles[]" id="input-file" hidden multiple />
+    <form id="form" action="archivo.php" method="post" enctype="multipart/form-data">
+        <div id="container">
+            <div class="drop-area" draggable="true">
+                <h2>Drag & Drop files</h2>
+                <button type="submit">Upload files</button>
+                <input type="file" name="inputFiles[]" id="input-file" hidden multiple />
+            </div>
+            <div id="preview"></div>
         </div>
-        <div id="preview"></div>
-    </div>
+    </form>
     <script src="js/script.js"></script>  
 </body>
 </html>
