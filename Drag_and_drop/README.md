@@ -176,3 +176,7 @@ for ($i=0; $i<count($_FILES["inputFiles"]["name"]); $i++) {
     echo $_FILES["inputFiles"]["name"][$i] .'<br>';
 }
 ```
+
+# Previsualització
+Imatge de com es veuria l'activitat:
+![Excecici joana](img/Captura_pantalla_dragAndDrop.png)
