@@ -1,4 +1,4 @@
-#container {
+/* #container {
     display: grid;
     place-items: center;
     height: 100vh;
@@ -62,4 +62,4 @@
 .previewImage .removeBtn:hover{
     background-color:transparent;
     color:red;
-}
+} */
