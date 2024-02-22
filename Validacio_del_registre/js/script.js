@@ -11,22 +11,37 @@ function setRedBorder(targetElement) {
 }
 
 form.addEventListener("focusout", function() {
-    console.log(event.target.value);
     //comprobar si esta vacío
-    if(event.target.value.trim() == "") {
+    if(event.target.value.trim() == "" && correo !== event.target) {
+        console.log("red from form");
         setRedBorder(event.target);
-    } else {
+    } else if (correo !== event.target){
+        console.log("green from form");
         setGreenBorder(event.target);
     }
+
+    // if(correo == event.target) {
+    //     console.log("desde form "+ validateEmail(event.target));
+    //     validateEmail(event.target);
+    // }
     
 });
 
 function validateEmail(email) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
-       return true;
-    }else{
-       return false;
+        console.log("es truee");
+        return true;
+    } else {
+        return false;
     }
 }
 
-correo.addEventListener("focusout", validateEmail);
+correo.addEventListener("focusout", function(){
+    var esValido = validateEmail(event.target.value);
+    
+    if (esValido) {
+        setGreenBorder(event.target);
+    } else {
+        setRedBorder(event.target);
+    }
+});
