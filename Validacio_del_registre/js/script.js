@@ -1,15 +1,26 @@
 var form = document.querySelector('#form');
 var correo = document.querySelector('#correo');
 var passwd = document.querySelector('#contrasena');
-console.log(form);
-console.log(correo);
-console.log(passwd);
+
+//validationPassword
+var entreP = document.querySelector("#entre");
+var mayuscula = document.querySelector("#mayuscula");
+var minuscula = document.querySelector("#minuscula");
+var numero = document.querySelector("#numero");
+var especial = document.querySelector("#especial");
+
 
 function setGreenBorder(targetElement) {
     targetElement.style.border = "2px solid green";
 }
 function setRedBorder(targetElement) {
     targetElement.style.border = "2px solid red";
+}
+function setGreenColor(targetElement) {
+    targetElement.style.color = "green";
+}
+function setRedColor(targetElement) {
+    targetElement.style.color = "red";
 }
 
 form.addEventListener("focusout", function(event) {
@@ -28,23 +39,13 @@ form.addEventListener("focusout", function(event) {
         console.log("green from form");
         setGreenBorder(event.target);
     }
-
-    // if(correo == event.target) {
-    //     console.log("desde form "+ validateEmail(event.target));
-    //     validateEmail(event.target);
-    // }
     
 });
 
-//Problema que no marca correo como focusout
-//correo.addEventListener("focusout", function())
+// para cada vez que se introduce algo en el correo
 correo.addEventListener("input", function(event){
     var valorInput = event.target.value.trim();
-    // if (valorInput == "") {
-    //     setRedBorder(event.target);
-    // }
-    var esValido = validateEmail(valorInput);
-    
+    var esValido = validateEmail(valorInput);    
     if (esValido) {
         setGreenBorder(event.target);
     } else {
@@ -67,60 +68,72 @@ passwd.addEventListener("input", function(event){
         setRedBorder(event.target);
     }
 });
+
 //condiciones que debe cumplir para considerarse valido
 function cumpleCondicion(contrasenya) {
     let lowerCaseLetters = /[a-z]/;
     let upperCaseLetters = /[A-Z]/;
     let numbers = /[0-9]/;
     let specialChars =  /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    var cumpleTodas = false;
-console.log("contraseña itroducida: "+contrasenya);
+    
     if (contrasenya.length<8 || contrasenya.length>15 ) {
-        console.log("Debe contener entre 8 y 15 caracteres");
-        //return false;
-    }
+        setEntreFalse();
+        console.log("Debe contener entre 8 y 15 caracteres");        
+    } else { setEntreTrue();}
+
     if (!lowerCaseLetters.test(contrasenya)) {
+        setMinusculaFalse();
         console.log("Debe contener 1 letra minúscula");
-        //return false;
-    }
+    } else { setMinusculaTrue();}
+
     if (!upperCaseLetters.test(contrasenya)) {
-        console.log("Debe contener 1 letra mayúscula");
-        //return false;
-    }
+        setMayusculaFalse();
+        console.log("Debe contener 1 letra mayúscula");        
+    } else { setMayusculaTrue();}
+
     if (!numbers.test(contrasenya)) {
+        setNumeroFalse();
         console.log("Debe contener 1 número");
-        //return false;
-    }
+    } else {setNumeroTrue();}
+
     if (!specialChars.test(contrasenya)) {
+        setEspecialFalse();
         console.log("Debe contener 1 carácter especial");
-        //return false;
-    }
-    return false;
+    } else {setEspecialTrue();}    
 }
 
-// document.getElementById("validationPassword").addEventListener("input");
-
-document.getElementById("validationPassword").addEventListener("click",function(event){crearDivCondicionesContrasena(event.target)})
-function crearDivCondicionesContrasena(target) {
-    // var nuevoDiv = document.createElement("div");
-    // nuevoDiv.id = "validationPassword";
-
-    var arrayText = ["Entre 8 y 15 char", "1 mayuscula", "1 numero", "1 caracter especial", "1 minuscula"];
-
-    var arrayID = ["entre", "mayuscula", "numero", "especial", "minuscula"];
-
-    // Crear 5 elementos p y agregarlos al nuevo div con IDs basados en los criterios
-    for (var i = 0; i < criterios.length; i++) {
-        var nuevoP = document.createElement("p");
-        
-        nuevoP.textContent = arrayText[i];       
-        nuevoP.id = arrayID[i];
-        
-        target.appendChild(nuevoP);
-    }
-    // // Obtener el cuerpo del documento
-    // var cuerpo = document.body;
-
-    // // Agregar el nuevo div al cuerpo del documento
-    // cuerpo.appendChild(nuevoDiv);
+// entre 8 y 15 char
+function setEntreFalse() {
+    setRedColor(entreP);
+}
+function setEntreTrue() {
+    setGreenColor(entreP);
+}
+// 1 mayuscula
+function setMayusculaFalse() {
+    setRedColor(mayuscula);
+}
+function setMayusculaTrue() {
+    setGreenColor(mayuscula);
+}
+// 1 minuscula
+function setMinusculaFalse() {
+    setRedColor(minuscula);
+}
+function setMinusculaTrue() {
+    setGreenColor(minuscula);
+}
+// 1 numero
+function setNumeroFalse() {
+    setRedColor(numero);
+}
+function setNumeroTrue() {
+    setGreenColor(numero);
+}
+// 1 caracter especial
+function setEspecialFalse() {
+    setRedColor(especial);
+}
+function setEspecialTrue() {
+    setGreenColor(especial);
 }
