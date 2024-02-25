@@ -10,7 +10,7 @@ var numero = document.querySelector("#numero");
 var especial = document.querySelector("#especial");
 
 var confirmPasswd = document.querySelector("#confirmar_contrasena");
-
+var submit = document.querySelector("#enviar");
 
 form.addEventListener("focusout", function(event) {
     if (correo == event.target) {
@@ -20,24 +20,52 @@ form.addEventListener("focusout", function(event) {
             setRedBorder(event.target);
         }
     } else
-    if(event.target.value.trim() == "" && correo !== event.target && passwd !== event.target) {
+    if(event.target.value.trim() == "" && correo !== event.target && passwd !== event.target && confirmPasswd !== event.target) {
         
         console.log("red from form");
         setRedBorder(event.target);
-        console.log(event.target);
-    } else if (correo !== event.target && passwd !== event.target){
+    } else if (correo !== event.target && passwd !== event.target && confirmPasswd !== event.target && submit !== event.target){
         console.log("green from form");
         setGreenBorder(event.target);
     }
-    console.log(event.target);
 });
+function validateForm() {
+    let nombre = document.forms["form"]["nombre"].value;
+    let correo = document.forms["form"]["correo"].value;
+    let contra = document.forms["form"]["contrasena"].value;
+    let contra2 = document.forms["form"]["confirmar_contrasena"].value;
+    let postal = document.forms["form"]["direccion"].value;
+    //verificar no nulls
+    if (nombre == "" || correo == "" || contra == "" || contra2 == "" || postal == "") {
+        alert("Todos los campos deben estar completos");
+        return false;
+    }
+    //comprobar que sean correctos
+    if (validateEmail(correo) && cumpleCondicion(contra) && sonIguales(contra, contra2)){        
+        return true;
+    }
+    alert("Asegurate que todos los campos sean correctos");
+    return false;
+}
 confirmPasswd.addEventListener("focusout", function(event){
-    if (event.target.value == passwd.value) {
-        setGreenBorder(event.target);
+    if (passwd.value != "" ) {
+        if (sonIguales(event.target.value, passwd.value)) {
+            setGreenBorder(event.target);
+        } else {
+            setRedBorder(event.target);
+            alert("Les contrasenyes no coincideixen");
+        }
     } else {
         setRedBorder(event.target);
-    }
+    }    
 });
+function sonIguales(target, x){
+    if (target == x) {
+        return true;
+    } 
+    return false;
+}
+
 // para cada vez que se introduce algo en el correo
 correo.addEventListener("input", function(event){
     var valorInput = event.target.value.trim();
@@ -53,16 +81,22 @@ function validateEmail(email) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
         return true;
     } else {
-        console.log("false from validating email");
+        console.log("L'email no cumpleix els requisits");
         return false;
     }
 }
-passwd.addEventListener("input", function(event){
+passwd.addEventListener("input", function(event){    
     if (cumpleCondicion(event.target.value)) {
-        console.log("contraseña: "+event.target.value);
         setGreenBorder(event.target);
     } else {
-        console.log("No cumple: "+ event.target.value);
+        console.log("La contraseña no compleix els requisits");
+        setRedBorder(event.target);
+    }  
+});
+//no esté vacío
+passwd.addEventListener("focusout", function(event) {
+    if (event.target.value == "") {
+        console.log("La contrasenya no pot estar buit");
         setRedBorder(event.target);
     }
 });
@@ -98,14 +132,16 @@ function cumpleCondicion(contrasenya) {
     if (!specialChars.test(contrasenya)) {
         setEspecialFalse();
         //console.log("Debe contener 1 carácter especial");
-    } else {setEspecialTrue(); counter+=1;}    
-console.log("counter: "+counter);
+    } else {setEspecialTrue(); counter+=1;}  
+    //contador de cuants requisits compleix
     if (counter == 5) {
         return true;
     }
     return false;
 }
 
+
+/* Funciones generales >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 // entre 8 y 15 char
 function setEntreFalse() {
     setRedColor(entreP);

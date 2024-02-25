@@ -7,7 +7,9 @@
     <link href="styles/style.css" rel="stylesheet">
 </head>
 <body>
-    <form id="form" action="" method="post">
+    
+    <form id="form" name="form" action="/action_page.php" method="post" onsubmit="return validateForm()">
+        <h1>Formulario de registro</h1>
         <div>
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
@@ -34,15 +36,16 @@
         </div>
 
         <div>
-            <input type="submit" value="Registrar">
+            <input id="enviar" type="submit" value="Registrar">
         </div>
 
         <div id="validationPassword">
-            <p id="entre">Entre 8 y 15 char</p>
-            <p id="mayuscula">1 mayuscula</p>
-            <p id="numero">1 numero</p>
-            <p id="especial">1 caracter especial</p>
-            <p id="minuscula">1 minuscula</p>
+            <p>La contraseña debe tener:</pp>
+            <p id="entre">- Entre 8 y 15 char</p>
+            <p id="mayuscula">- 1 mayuscula</p>
+            <p id="numero">- 1 numero</p>
+            <p id="especial">- 1 caracter especial</p>
+            <p id="minuscula">- 1 minuscula</p>
         </div>
     </form>   
     

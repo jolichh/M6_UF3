@@ -1,34 +1,64 @@
 input:focus-visible {
     outline: none;
 }
-/* form {
-    max-width: 400px;
-    margin: 0 auto;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-div {
+#form {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80vh;
+}
+
+#form div {
     margin-bottom: 15px;
 }
 
 label {
     display: block;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
-input {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 input[type="submit"] {
     background-color: #4caf50;
     color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    width: 20%;
 }
 
 input[type="submit"]:hover {
     background-color: #45a049;
+}
+/* 
+#validationPassword {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 15px;
 } */
+
+#validationPassword p {
+    font-size: 12px;
+    margin: 0;
+}
