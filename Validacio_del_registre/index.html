@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validacio del registre</title>
+    <link href="styles/style.css" rel="stylesheet">
+</head>
+<body>
+    
+    <form id="form" name="form" action="/action_page.php" method="post" onsubmit="return validateForm()">
+        <h1>Formulario de registro</h1>
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div>
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+        </div>
+
+        <div>
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" required>
+        </div>
+
+        <div>
+            <label for="confirmar_contrasena">Confirmar Contraseña:</label>
+            <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" required>
+        </div>
+
+        <div>
+            <label for="direccion">Dirección Postal:</label>
+            <input type="text" id="direccion" name="direccion" required>
+        </div>
+
+        <div>
+            <input id="enviar" type="submit" value="Registrar">
+        </div>
+
+        <div id="validationPassword">
+            <p>La contraseña debe tener:</pp>
+            <p id="entre">- Entre 8 y 15 char</p>
+            <p id="mayuscula">- 1 mayuscula</p>
+            <p id="numero">- 1 numero</p>
+            <p id="especial">- 1 caracter especial</p>
+            <p id="minuscula">- 1 minuscula</p>
+        </div>
+    </form>   
+    
+    <script src="js/script.js"></script> 
+</body>
+</html>
