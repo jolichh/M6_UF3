@@ -9,22 +9,10 @@ var minuscula = document.querySelector("#minuscula");
 var numero = document.querySelector("#numero");
 var especial = document.querySelector("#especial");
 
+var confirmPasswd = document.querySelector("#confirmar_contrasena");
 
-function setGreenBorder(targetElement) {
-    targetElement.style.border = "2px solid green";
-}
-function setRedBorder(targetElement) {
-    targetElement.style.border = "2px solid red";
-}
-function setGreenColor(targetElement) {
-    targetElement.style.color = "green";
-}
-function setRedColor(targetElement) {
-    targetElement.style.color = "red";
-}
 
 form.addEventListener("focusout", function(event) {
-    //comprobar si esta vacío
     if (correo == event.target) {
         if (validateEmail(event.target.value)) {
             setGreenBorder(event.target);
@@ -32,16 +20,24 @@ form.addEventListener("focusout", function(event) {
             setRedBorder(event.target);
         }
     } else
-    if(event.target.value.trim() == "" && correo !== event.target) {
+    if(event.target.value.trim() == "" && correo !== event.target && passwd !== event.target) {
+        
         console.log("red from form");
         setRedBorder(event.target);
-    } else if (correo !== event.target){
+        console.log(event.target);
+    } else if (correo !== event.target && passwd !== event.target){
         console.log("green from form");
         setGreenBorder(event.target);
     }
-    
+    console.log(event.target);
 });
-
+confirmPasswd.addEventListener("focusout", function(event){
+    if (event.target.value == passwd.value) {
+        setGreenBorder(event.target);
+    } else {
+        setRedBorder(event.target);
+    }
+});
 // para cada vez que se introduce algo en el correo
 correo.addEventListener("input", function(event){
     var valorInput = event.target.value.trim();
@@ -63,8 +59,10 @@ function validateEmail(email) {
 }
 passwd.addEventListener("input", function(event){
     if (cumpleCondicion(event.target.value)) {
+        console.log("contraseña: "+event.target.value);
         setGreenBorder(event.target);
     } else {
+        console.log("No cumple: "+ event.target.value);
         setRedBorder(event.target);
     }
 });
@@ -75,31 +73,37 @@ function cumpleCondicion(contrasenya) {
     let upperCaseLetters = /[A-Z]/;
     let numbers = /[0-9]/;
     let specialChars =  /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    
+    var counter = 0;
+
     if (contrasenya.length<8 || contrasenya.length>15 ) {
         setEntreFalse();
-        console.log("Debe contener entre 8 y 15 caracteres");        
-    } else { setEntreTrue();}
+        //console.log("Debe contener entre 8 y 15 caracteres");        
+    } else { setEntreTrue(); counter+=1;}
 
     if (!lowerCaseLetters.test(contrasenya)) {
         setMinusculaFalse();
-        console.log("Debe contener 1 letra minúscula");
-    } else { setMinusculaTrue();}
+        //console.log("Debe contener 1 letra minúscula");
+    } else { setMinusculaTrue(); counter+=1;}
 
     if (!upperCaseLetters.test(contrasenya)) {
         setMayusculaFalse();
-        console.log("Debe contener 1 letra mayúscula");        
-    } else { setMayusculaTrue();}
+        //console.log("Debe contener 1 letra mayúscula");        
+    } else { setMayusculaTrue(); counter+=1;}
 
     if (!numbers.test(contrasenya)) {
         setNumeroFalse();
-        console.log("Debe contener 1 número");
-    } else {setNumeroTrue();}
+        //console.log("Debe contener 1 número");
+    } else {setNumeroTrue(); counter+=1;}
 
     if (!specialChars.test(contrasenya)) {
         setEspecialFalse();
-        console.log("Debe contener 1 carácter especial");
-    } else {setEspecialTrue();}    
+        //console.log("Debe contener 1 carácter especial");
+    } else {setEspecialTrue(); counter+=1;}    
+console.log("counter: "+counter);
+    if (counter == 5) {
+        return true;
+    }
+    return false;
 }
 
 // entre 8 y 15 char
@@ -136,4 +140,17 @@ function setEspecialFalse() {
 }
 function setEspecialTrue() {
     setGreenColor(especial);
+}
+
+function setGreenBorder(targetElement) {
+    targetElement.style.border = "2px solid green";
+}
+function setRedBorder(targetElement) {
+    targetElement.style.border = "2px solid red";
+}
+function setGreenColor(targetElement) {
+    targetElement.style.color = "green";
+}
+function setRedColor(targetElement) {
+    targetElement.style.color = "red";
 }
