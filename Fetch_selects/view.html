@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style/style.css" rel="stylesheet">
+</head>
+<body>
+    <form action="procesar.php" method="post">
+        <label for="categoria">Categoría:</label>
+        <select name="categoria" id="categoria" onchange="cargarSubcategoria()">
+            <!-- Aquí irán las opciones de categoría -->
+            <option value="">Seleccionar</option>
+        </select>
+        <label for="subcategoria">Subcategoría:</label>
+        <select id="subcategoria">
+            <option value="">Seleccione una subcategoría</option>
+        </select>
+    </form>
+    <script src="javascript/script.js"></script>
+    
+</body>
+</html>
