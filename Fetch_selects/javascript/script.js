@@ -1,14 +1,17 @@
+var categoriaSelect = document.getElementById("categoria");
+var subCategoriaSelect = document.getElementById("subcategoria");
+
 function cargarCategorias() {
-    var categoriaSelect = document.getElementById("categoria");
+    
         fetch('getCategoria.php')
             .then(response => response.json())
             .then(data => {
             // Llenar el select de subcategorías
             console.log(data);
-                data.forEach(subcategoria => {
+                data.forEach(categoria => {
                     var option = document.createElement("option");
-                    option.value = subcategoria.id;
-                    option.text = subcategoria.nom;
+                    option.value = categoria.id;
+                    option.text = categoria.nom;
                     //categoriaSelect.add(option);
                     categoriaSelect.appendChild(option);
                     console.log(option);
@@ -18,12 +21,21 @@ function cargarCategorias() {
     
 }
 cargarCategorias();
-function cargarSubCategorias() {
-    var subcateCategoria = document.getElementById("subcategoria");
-        fetch('getSubcategoria.php')
-            .then(response => response.json())
-            .then(data =>
-                {
-                    
-                })
-}
+
+categoriaSelect.addEventListener("change", function(){
+    var idCategoria = categoriaSelect.value;
+    fetch('getSubcategoria.php')
+        .then(response => response.json())
+        .then(data =>
+            {
+                var optionsSub = "<option value='-1'>Selecciona una subcategoria</option>";
+                data.forEach(subcategoria => {
+                    //filtrar por categoria a la que pertenece
+                    if (subcategoria.cat_id == idCategoria) {
+                        optionsSub += '<option value="'+subcategoria.id+'">'+subcategoria.nom+'</option>';
+                    }                    
+                });
+                console.log(optionsSub);
+                subCategoriaSelect.innerHTML = optionsSub;
+            })
+});
