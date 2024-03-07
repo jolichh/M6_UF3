@@ -9,11 +9,15 @@
     <script  src="script/javascript.js" type="module"></script>
 </head>
 <body>
+    <h1>Google maps</h1>
     <div id="map"></div>
+    <input type="text" name="adreca" value="Carrer de la Selva de Mar 211 08020 Barcelona" id="adreca"/>
     <button type="button" class="btn btn-secondary" id="findLoc">Buscar adreça</button>
-    <input type="hidden" name="lat" value="" id="latitude"/>
-    <input type="hidden" name="lng" value="" id="longitude"/>
-    
+    <br>
+    <input type="text" name="lat" value="" id="latitude" placeholder="lat"/>
+    <input type="text" name="lng" value="" id="longitude" placeholder="lng"/>
+    <button type="button" id="geo">Ubi actual</button>
+    <div id="info"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwEQr8flR0CtMZ-jSs9hK8lscYUMOtVPk&callback=initMap" async defer></script>
 </body>
 </html>
