@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" href="style/style.css"/>
+    <script  src="script/javascript.js" type="module"></script>
+</head>
+<body>
+    <h1>Google maps</h1>
+    <div id="map"></div>
+    <input type="text" name="adreca" value="Carrer de la Selva de Mar 211 08020 Barcelona" id="adreca"/>
+    <button type="button" class="btn btn-secondary" id="findLoc">Buscar adreça</button>
+    <br>
+    <input type="text" name="lat" value="" id="latitude" placeholder="lat"/>
+    <input type="text" name="lng" value="" id="longitude" placeholder="lng"/>
+    <button type="button" id="geo">Ubi actual</button>
+    <div id="info"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwEQr8flR0CtMZ-jSs9hK8lscYUMOtVPk&callback=initMap" async defer></script>
+</body>
+</html>
