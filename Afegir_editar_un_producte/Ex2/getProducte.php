@@ -1,15 +1,7 @@
 <?php
 
 if(isset($_POST["id"]) && !empty($_POST["id"])){
-    $servername = "bbdd.martamillanlom.cat";
-    $username = "ddb193275";
-    $password = "bbddTest12!%";
-    $dbname = "ddb193275";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include("../db_connection.php");
 
     $sql = "SELECT * FROM productes WHERE id=" . $_POST["id"];
 

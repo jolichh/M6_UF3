@@ -10,31 +10,23 @@
 
 <?php 
 
-$servername = "bbdd.martamillanlom.cat";
-$username = "ddb193275";
-$password = "bbddTest12!%";
-$dbname = "ddb193275";
+    include("../db_connection.php");
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    $sql = "SELECT * FROM productes";
 
-$sql = "SELECT * FROM productes";
+    $result = $conn->query($sql);
 
-$result = $conn->query($sql);
+    $array = array();
 
-$array = array();
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        array_push($array, array("id" =>$row["id"], "nom"=>$row["nom"]));            
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            array_push($array, array("id" =>$row["id"], "nom"=>$row["nom"]));            
+        }
+    } else {
+        echo "0 results";
     }
-} else {
-    echo "0 results";
-}
 
-$conn->close();
+    $conn->close();
 ?>
 <body class="container mt-5 w-80">
     <div class="row">
@@ -70,7 +62,7 @@ $conn->close();
                                         <th scope="row">' . $array[$i]["id"] . '</th>
                                         <td>' . $array[$i]["nom"] . '</td>
                                         <td><p idProd="' . $array[$i]["id"] . '" class="btnEdit btn btn-outline-info">Edit</p></td>
-                                        <td><a href="" class="btn btn-outline-danger">Remove</a></td>
+                                        <td><a href="eliminar2.php?id='. $array[$i]["id"] . '" class="btn btn-outline-danger">Remove</a></td>
                                     </tr>';
                         }  
                     ?>
