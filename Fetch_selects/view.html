@@ -7,8 +7,9 @@
     <link href="style/style.css" rel="stylesheet">
     
 </head>
-<body>
+<body>    
     <form action="procesar.php" method="post">
+        <h2>DropDown select</h2>
         <label for="categoria">Categoría:</label>
         <select name="categoria" id="categoria" >
             <!-- Aquí irán las opciones de categoría -->
@@ -16,9 +17,14 @@
         </select>
         <label for="subcategoria">Subcategoría:</label>
         <select id="subcategoria">
-            <option value="">Seleccione una subcategoría</option>
+            <option value="">Selecciona una subcategoría</option>
         </select>
     </form>
+    <form action="procesar.php" method="post">
+        <h2>Multiples selects</h2>
+        <div id="cat"></div>
+    </form>
+    
     <script src="javascript/script.js"></script>
 </body>
 </html>
