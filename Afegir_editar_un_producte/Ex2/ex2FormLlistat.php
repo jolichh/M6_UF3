@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulari</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
@@ -52,6 +53,7 @@
                         <th scope="col">Nom</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Remove</th>
+                        <th scope="col">Upload image</th>
                     </tr>
                 </thead>
                 
@@ -63,38 +65,19 @@
                                         <td>' . $array[$i]["nom"] . '</td>
                                         <td><p idProd="' . $array[$i]["id"] . '" class="btnEdit btn btn-outline-info">Edit</p></td>
                                         <td><a href="eliminar2.php?id='. $array[$i]["id"] . '" class="btn btn-outline-danger">Remove</a></td>
+                                        <td><button class="btnImg btn btn-outline-secondary" type="submit">Upload files</button>
+                                        <input type="file" name="inputFiles[]" class="input-file" hidden multiple /></td>
                                     </tr>';
                         }  
                     ?>
                 </tbody>
             </table>
         </div>
+        <div id=container>
+            <p class="texto-img mb-5"></p>
+            <div id="preview"></div>
+        </div>
     </div>
-
-    <script>
-        let btnEdit = document.querySelectorAll(".btnEdit");
-        btnEdit.forEach(el=>{
-            el.addEventListener("click", function(){
-
-                let formData = new FormData();
-                formData.append("id", this.getAttribute("idProd"));
-
-                let options = {
-                        method: 'POST',
-                        body: formData
-                    }
-
-                fetch("getProducte.php", options)
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                    document.getElementById("nomProducte").value = data.nom;
-                    document.getElementById("addEdit").value = data.addEdit;
-                })
-                .catch((error) => {});
-
-            })
-        })
-    </script>
+    <script src="script.js"></script>  
 </body>
 </html>

@@ -1,0 +1,27 @@
+.previewImage{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.previewImage img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+/* .previewImage .removeBtn{
+    background-color: red;
+    border-radius: 100%;
+    font-size: 15px;
+    padding: 1px;
+    color: #fff;
+    border: 2px solid red;
+    margin-left: 40px;
+    cursor: pointer;
+}
+.previewImage .removeBtn:hover{
+    background-color:transparent;
+    color:red;
+} */
