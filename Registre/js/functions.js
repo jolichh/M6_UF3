@@ -8,7 +8,6 @@ console.log(inputCognom);
 //script al final de html para que esto funcione
 $('#form-user-register').submit(function(e) {
   e.preventDefault(); //default hace la acción de submit
-  alert("EE");
   validaNom();
   validaCognom();
 });
@@ -25,7 +24,12 @@ function validaNom(){
 }
 function validaCognom(){
   if (inputCognom.value == ""){
-
+    inputCognom.classList.add("is-invalid");
+    noPotEstarBuit('#feedbackCognoms');
+  } else {
+    netejarAvisCamp('#feedbackCongoms');
+    inputCognom.classList.remove("is-invalid");
+    inputCognom.classList.add("is-valid");
   }
 
 }
