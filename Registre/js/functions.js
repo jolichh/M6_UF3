@@ -2,11 +2,13 @@ var inputNom = document.getElementById("validationNom");
 var inputCognom = document.getElementById("validationCognoms");
 var inputDni = document.getElementById("validationDNI");
 var inputUserName = document.getElementById("validationUsername");
+var inputEmail = document.getElementById("validationEmail");
+var inputTelefon = document.getElementById("validationTelf");
 
 var btnArroba = document.querySelector("#btnUsername");
-console.log(btnArroba);
-// console.log("hoola");
-// console.log("sdfdasssasdsdasdaf");
+//console.log(btnArroba);
+//console.log("hoola");
+//console.log("sdfdsasssasdsdasdaf");
 
 
 /* validar tots els camps al donar boto registre*/
@@ -17,24 +19,56 @@ $('#form-user-register').submit(function(e) {
   validaCognom();
   validaDni();
   validaUsername();
+  validaEmail();
+  validaTelefon();
 });
 
-btnArroba.addEventListener("click", function() {
-  
+btnArroba.addEventListener("click", function() {  
+  validaNom();
+  validaCognom();
+  validaDni();
   var username = generarUsername();
   inputUserName.value = username;
-  console.log("Username generado: "+username);
+  if(inputUserName.value == ""){
+    noEsValid(inputUserName);
+  }
 });
+function validaTelefon() {
+  if(inputTelefon.value == ""){
+    noEsValid(inputTelefon);
+    noPotEstarBuit('#feedbackTelf');
+  } else {
+    //comprobar si es valido
+    if (validateTelef(inputTelefon.value)){
+      netejarAvisCamp("#feedbackTelf");
+      esValid(inputTelefon);
+    } else {
+      netejarAvisCamp("#feedbackTelf");
+      noEsValid(inputTelefon);
+      valorNoValid("#feedbackTelf");
+    }
+  }
+}
 function validaEmail() {
   if(inputEmail.value == ""){
-
+    noEsValid(inputEmail);
+    noPotEstarBuit('#feedbackEmail');
   } else {
-
+    //comprobar si es valido
+    if (validateEmail(inputEmail.value)){
+      netejarAvisCamp("#feedbackEmail");
+      esValid(inputEmail);
+    } else {
+      console.log("correcto");
+      netejarAvisCamp("#feedbackEmail");
+      noEsValid(inputEmail);
+      valorNoValid("#feedbackEmail");
+    }
   }
 }
 function validaUsername(){
   if(inputUserName.value == ""){
-    inputUserName.classList.add("is-invalid");
+    noEsValid(inputUserName);
     noPotEstarBuit('#feedbackUsername');
   } else {
     netejarAvisCamp('#feedbackUsername');
@@ -44,7 +78,7 @@ function validaUsername(){
 // comprovar Nom i Cognom not nulls
 function validaNom(){
   if (inputNom.value == "") {
-    inputNom.classList.add("is-invalid");    
+    noEsValid(inputNom);  
     noPotEstarBuit('#feedbackNom');
   } else {        
     netejarAvisCamp('#feedbackNom');    //eliminar en caso de invalid
@@ -53,7 +87,7 @@ function validaNom(){
 }
 function validaCognom(){
   if (inputCognom.value == ""){
-    inputCognom.classList.add("is-invalid");
+    noEsValid(inputCognom);
     noPotEstarBuit('#feedbackCognoms');
   } else {
     netejarAvisCamp('#feedbackCongoms');
@@ -63,20 +97,26 @@ function validaCognom(){
 }
 function validaDni(){
   if (inputDni.value == ""){
-    inputDni.classList.add("is-invalid");
+    noEsValid(inputDni);
     noPotEstarBuit('#feedbackDNI');
   } else {
     if (validateNIF_NIE(inputDni.value)) {
       netejarAvisCamp('#feedbackDNI');
       esValid(inputDni);
     } else {
-      netejarAvisCamp('#feedbackDNI');
-      
       //formato no valido
+      netejarAvisCamp('#feedbackDNI');
+      noEsValid(inputDni);
+      valorNoValid('#feedbackDNI');      
     }
   }
 }
 
+//mensaje al div del feedback formato no valido
+function valorNoValid(etiqueta){
+  $(etiqueta).addClass("invalid-feedback");
+  $(etiqueta).html("Ha de ser un valor vàlid");
+}
 //afegir missatge al div del input
 function noPotEstarBuit(etiqueta) {
   $(etiqueta).addClass("invalid-feedback");
@@ -84,12 +124,17 @@ function noPotEstarBuit(etiqueta) {
 }
 //neteja missatge del div i color del input
 function netejarAvisCamp(etiqueta){
+  console.log("removing: "+etiqueta);
   $(etiqueta).removeClass("invalid-feedback");
   $(etiqueta).html("");
 }
 function esValid(etiqueta) {
   etiqueta.classList.remove("is-invalid");
   etiqueta.classList.add("is-valid");
+}
+function noEsValid(etiqueta){
+  etiqueta.classList.remove("is-valid");
+  etiqueta.classList.add("is-invalid");
 }
 //genera un nombre a partir del nombre apellido y dni del usuario
 // formato: primera letra en MINUSCULA + 4 primeras letras apellido(primera en MAYUSCULA) + numeros en POSICIONES impares del dni
@@ -138,9 +183,20 @@ function validateNIF_NIE(value){
 }
 function validateEmail(mail) {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)){
-    alert("OK");
+    console.log("OK email");
+    return true;
   }else{
-    alert("KO");
+    console.log("KO email");
+    return false;
+  }
+}
+function validateTelef(telf){
+  var phoneno = /^\d{9}$/;
+  if(telf.match(phoneno)){
+      return true;
+  } else {
+     console.log("Not a valid Phone Number");
+     return false;
   }
 }
 
