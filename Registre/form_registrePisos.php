@@ -20,13 +20,13 @@
 				<form id="form-user-register">
 					<div class="form-row mt-5 mb-4">
 						<div class="col-8">
-							<label for="">Nom*</label>
-							<input type="text" class="form-control" id="" value="" name="">
+							<label for="nom">Nom*</label>
+							<input type="text" class="form-control" id="nom" value="" name="nom">
 						</div>
 
 						<div class="col-4">
 							<label for="">Preu*</label>
-							<input type="text" class="form-control" id="" value="" name="">
+							<input type="text" class="form-control" id="preuInput" value="" name="preu">
 						</div>	
 					</div>
 					
@@ -43,29 +43,29 @@
 
 						<div class="col-4">
 							<label for="">Nom</label>
-							<input type="text" class="form-control" id="">
+							<input type="text" class="form-control" id="nomVia">
 						</div>
 
 						<div class="col-4">
 							<label for="">Número</label>
-							<input type="text" class="form-control" id="">
+							<input type="text" class="form-control" id="num">
 						</div>
 					</div>
 
 					<div class="form-row mb-4">
 						<div class="col-4">
 							<label for="">Pis</label>
-							<input type="text" class="form-control" id="">
+							<input type="text" class="form-control" id="pis">
 						</div>
 
 						<div class="col-4">
 							<label for="">Escala</label>
-							<input type="text" class="form-control" id="">
+							<input type="text" class="form-control" id="escala">
 						</div>
 
 						<div class="col-4">
 							<label for="">Porta</label>
-							<input type="text" class="form-control" id="">
+							<input type="text" class="form-control" id="porta">
 						</div>
 					</div>
 					
@@ -76,7 +76,7 @@
 					<div class="form-row mb-4">
 						<div class="col-4">
 							<label for="">CP</label>
-							<input type="text" class="form-control" id="">
+							<input type="text" class="form-control" id="cp">
 						</div>
 
 						<div class="col-4">
@@ -103,7 +103,7 @@
 					<div class="form-row mb-4">
 						<div class="col-4">
 							<label for="">Població</label>
-							<select class="custom-select">
+							<select id="selectPoblacio" class="custom-select">
 								<option selected>Open this select menu</option>
 								<option value="1">One</option>
 								<option value="2">Two</option>
@@ -112,25 +112,25 @@
 						</div>
 
 						<div class="col-4">
-							<label for="">Latitud</label>
-							<input type="text" class="form-control" id="">
+							<label for="latitud">Latitud</label>
+							<input type="text" class="form-control" id="latitud">
 						</div>
 
 						<div class="col-4">
-							<label for="">Longitud</label>
-							<input type="text" class="form-control" id="">
+							<label for="longitud">Longitud</label>
+							<input type="text" class="form-control" id="longitud">
 						</div>
 					</div>
 
 					<div class="form-row mb-4">
-						<textarea>
+						<textarea id="textArea">
 
 						</textarea>
 					</div>
 					
 					<button class="btn btn-primary" type="submit">Registrar</button>
 
-					<button class="btn btn-info">Visualitzar</button>
+					<button id="visualitzar"class="btn btn-info">Visualitzar</button>
 				</form>
 			</div>
 
@@ -138,7 +138,7 @@
 				<h4 id="nomPis">Nom + barri, districte</h4>
 				<p id="dir">Via Nom Número Pis Escala Porta · CP · Districte · Barri · Pobliacio</p>
 				<p id="preu">300€</p>
-				<p>Text</p>
+				<p id="text">Text</p>
 
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-console.log("asdaasd");
+console.log("asdaasssd");
 // Deshabilitar select de barrios
 $('#selectBarri').prop('disabled', true);
 
@@ -54,3 +54,27 @@ function mostrarBarris(response) {
         selectBarri.append('<option value="' + barri.id + '">' + barri.name + '</option>');
     });
 }
+
+//visualizar datos al div
+$('#visualitzar').on("click", function(e){
+    e.preventDefault();
+    //datos 
+    var nom = document.getElementById('nom').value;
+    var barri = ($('#selectBarri option:selected')).text();
+    var districte = ($('#selectDistricte option:selected')).text(); 
+    var via = document.getElementById('nomVia').value;
+    var numero = document.getElementById('num').value;
+    var pis = document.getElementById('pis').value;
+    var escala = document.getElementById('escala').value;
+    var porta = document.getElementById('porta').value;
+    var cp = document.getElementById('cp').value;
+    var poblacio = ($('#selectPoblacio option:selected')).text();
+    var preu = document.getElementById('preuInput').value;
+    var text = document.getElementById('textArea').value;
+    
+    //elementos del div a mostrar
+    $('#nomPis').text(nom+", "+barri+", "+districte); //h4
+    $('#dir').text(via+" "+nom+" "+numero+" "+pis+" "+escala+" "+porta+"·"+cp+"·"+districte+"·"+barri+"·"+poblacio); //p direccio
+    $('#preu').text(preu+"€");
+    $('#text').text(text);
+});
