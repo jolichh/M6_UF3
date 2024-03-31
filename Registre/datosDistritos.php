@@ -25,4 +25,6 @@
 
     // Devolver los distritos en formato JSON
     echo json_encode($distritos);
+
+    mysqli_close($connexio);
 ?>

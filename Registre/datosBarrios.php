@@ -24,4 +24,6 @@
         //mientras haya resultado hace bucle
     }
     echo json_encode($barrios);
+    
+    mysqli_close($connexio);
 ?>
