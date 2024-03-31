@@ -6,9 +6,7 @@ var inputEmail = document.getElementById("validationEmail");
 var inputTelefon = document.getElementById("validationTelf");
 
 var btnArroba = document.querySelector("#btnUsername");
-//console.log(btnArroba);
 //console.log("hoola");
-//console.log("sdfdsasssasdsdasdaf");
 
 
 /* validar tots els camps al donar boto registre*/
@@ -31,8 +29,33 @@ btnArroba.addEventListener("click", function() {
   inputUserName.value = username;
   if(inputUserName.value == ""){
     noEsValid(inputUserName);
+  } else {
+    netejarAvisCamp();
+    esValid(inputUserName);
   }
 });
+
+inputNom.addEventListener("focusout", function(e){
+  validaNom();
+});
+inputCognom.addEventListener("focusout", function(e){
+  validaCognom();
+});
+inputDni.addEventListener("focusout", function(e){
+  validaDni();
+});
+inputUserName.addEventListener("focusout", function(e){
+  validaUsername();
+});
+inputEmail.addEventListener("focusout", function(e){
+  validaEmail();
+});
+inputTelefon.addEventListener("focusout", function(e){
+  validaTelefon();
+});
+
+
+/* FUNCIONES VALIDACION */
 function validaTelefon() {
   if(inputTelefon.value == ""){
     noEsValid(inputTelefon);
@@ -124,7 +147,6 @@ function noPotEstarBuit(etiqueta) {
 }
 //neteja missatge del div i color del input
 function netejarAvisCamp(etiqueta){
-  console.log("removing: "+etiqueta);
   $(etiqueta).removeClass("invalid-feedback");
   $(etiqueta).html("");
 }
